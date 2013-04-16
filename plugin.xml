@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="This is a Fan In Action Set"
+            id="br.ufla.dcc.plugin.faninActionSet"
+            label="Fan In Action Set"
+            visible="true">
+         <action
+               class="br.ufla.dcc.plugin.view.action.FanInActionDelegate"
+               icon="icons/run.png"
+               id="br.ufla.dcc.plugin.fanInAction"
+               label="Execute Fan In"
+               style="push"
+               toolbarPath="Normal"
+               tooltip="Run Fan In Analysis">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            class="br.ufla.dcc.plugin.view.views.MethodsView"
+            icon="icons/methodView.png"
+            id="br.ufla.dcc.plugin.fanin.methodsView"
+            name="Methods View"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="false"
+            class="br.ufla.dcc.plugin.view.views.GraphView"
+            icon="icons/graphView.png"
+            id="br.ufla.dcc.plugin.fanin.graphView"
+            name="Graph View"
+            restorable="true">
+      </view>
+      <view
+            class="br.ufla.dcc.plugin.view.FormView"
+            id="br.ufla.dcc.plugin.FanIn.formView"
+            name="Form View"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         id="br.ufla.dcc.plugin.view.highFanInMarker"
+         name="High FanIn Method"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="false">
+      </persistent>
+      <super
+            type="org.eclipse.core.resources.textmarker">
+      </super>
+   </extension>
+   
+   <!-- this changes the marker image in the editor marker bar  -->
+   <extension point="org.eclipse.ui.editors.annotationTypes">
+      <type markerType="br.ufla.dcc.plugin.view.highFanInMarker"
+            name="br.ufla.dcc.plugin.view.highFanInMarkerAnnotation">
+      </type>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+      <specification
+            annotationType="br.ufla.dcc.plugin.view.highFanInMarkerAnnotation"
+            icon="icons/marker.png"
+
+            textPreferenceKey="myAppIndication"
+            textPreferenceValue="true"
+            overviewRulerPreferenceKey="myAppIndicationInOverviewRuler"
+            overviewRulerPreferenceValue="true"
+            verticalRulerPreferenceKey="myAppIndicationInVerticalRuler"
+            verticalRulerPreferenceValue="true"
+            highlightPreferenceKey="myAppHighlighting"
+          
+            colorPreferenceKey="myAppIndicationColor"
+            colorPreferenceValue="248,248,255"
+            presentationLayer="3"
+            showInNextPrevDropdownToolbarAction="false"
+            includeOnPreferencePage="true"
+
+             >
+      </specification>
+   </extension>
+
+</plugin>
